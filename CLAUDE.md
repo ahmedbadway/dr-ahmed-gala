@@ -1,224 +1,349 @@
-# CLAUDE.md — Dr. Ahmed Gala Clinic Landing Page
+# CLAUDE.md — Ahmed Badway
 
-## نظرة عامة / Overview
-
-موقع Landing Page احترافي لعيادة د. أحمد جلال، متخصصة في الطب التجميلي والعناية بالبشرة في القاهرة.  
-Professional landing page for Dr. Ahmed Gala Clinic — aesthetic medicine & skincare, Cairo, Egypt.
-
-**Live URL**: `https://ggtxk9bkbf-glitch.github.io/dr-ahmed-gala/`  
-**Stack**: React 19 + Vite + Tailwind CSS 3.4 + EmailJS  
-**Deployment**: GitHub Pages (`gh-pages` branch)
+> Work on main branch only. No new branches. Ever.
 
 ---
 
-## التقنيات / Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Framework | React 19 (JSX, hooks, context) |
-| Build tool | Vite 6 |
-| Styling | Tailwind CSS 3.4 + custom tokens |
-| Email | `@emailjs/browser` |
-| Deploy | `gh-pages` → GitHub Pages |
-| Fonts | Plus Jakarta Sans (EN) / Cairo (AR) |
+## 👤 Developer Profile
+- **Name:** Ahmed Badway
+- **Role:** Frontend Developer & Freelancer
+- **Location:** Mansoura, Egypt
+- **GitHub:** ahmedbadway
+- **Higgsfield:** ahmedbadway93
+- **Expertise:** React, Vite, Tailwind CSS, Motion Design, Logo Design, Framer Motion, GSAP
+- **Languages:** Arabic (native) + English
 
 ---
 
-## بنية المشروع / Project Structure
-
-```
-dr-ahmed-gala/
-├── index.html                  # Entry HTML — SEO meta, font imports
-├── vite.config.js              # base: '/dr-ahmed-gala/'
-├── tailwind.config.js          # Custom colors & font
-├── src/
-│   ├── main.jsx                # React 19 root render
-│   ├── App.jsx                 # Root — wraps all 11 sections
-│   ├── index.css               # Global styles, animations, RTL fixes
-│   ├── translations.js         # i18n strings (en + ar)
-│   ├── context/
-│   │   └── LanguageContext.jsx # lang state, setLang, t(), RTL toggle
-│   ├── utils/
-│   │   └── imageHelper.js      # getImageUrl(), handleImageError()
-│   └── components/
-│       ├── Header.jsx          # Sticky frosted header, nav, lang switcher
-│       ├── Hero.jsx            # Headline, doctor photo, stats badges
-│       ├── About.jsx           # Doctor bio, credentials grid
-│       ├── Services.jsx        # 6 service cards + detail modal
-│       ├── WhyChoose.jsx       # 3-tab feature switcher
-│       ├── Excellence.jsx      # 4-column strengths grid
-│       ├── Testimonials.jsx    # Patient reviews carousel
-│       ├── BeforeAfter.jsx     # Before/after split comparison
-│       ├── FAQ.jsx             # 2-category accordion (11 Q&As)
-│       ├── Contact.jsx         # Form + clinic info + EmailJS
-│       ├── Footer.jsx          # Links, socials, brand
-│       └── FloatingChat.jsx    # Fixed floating Call/WhatsApp/IG button
-└── public/
-    ├── favicon.svg
-    ├── icons.svg
-    └── images/
-        ├── team/               # doctor.jpeg, doctor2.jpeg
-        ├── services/           # 8 treatment photos
-        └── before-after/       # 12 before/after images (4 categories)
-```
+## 🌍 Project Types
+- **All types:** Clinic websites, portfolios, SaaS, e-commerce, dashboards
+- **Primary interface language:** English (Arabic navigation supported)
+- **Design philosophy:** No generic AI templates — premium, intentional, high-end work
 
 ---
 
-## Design Tokens (Tailwind)
+## 🌿 Git Rules
+- `main` branch ONLY — never create new branches
+- Every session: confirm you are on `main` before any work
+- Commit messages in English, descriptive
+- Never push to any branch except `main`
 
-```js
-colors: {
-  primary: '#2d5a4e',   // Deep green — brand primary
-  accent:  '#c9a87c',   // Gold — CTAs & highlights
-  cream:   '#f9f7f4',   // Background
-  dark:    'rgb(45 52 54)' // Body text
+---
+
+## 💻 Coding Rules
+- No wireframes — start directly on code
+- **PascalCase** file naming: `HeroSection.jsx`, `Navbar.jsx`, `Button.jsx`
+- SVG placeholders for any missing images
+- Images: always use `import.meta.env.BASE_URL`
+- After every edit: flag unused or redundant code for deletion
+- Main branch only in Claude Code — include `"Work on main branch only. No new branches."` in every prompt
+
+---
+
+## 🛠️ Tech Stack
+- **Framework:** React + Vite
+- **Styling:** Tailwind CSS + Custom CSS (when needed)
+- **Animation:** Motion (motion/react) / Framer Motion / GSAP
+- **Fonts:** Cairo (Arabic) + Nunito (English)
+- **Build:** Vite (production-ready builds)
+- **Color system:** CSS variables (OKLCH preferred) — never hardcode colors
+- **Icons:** Phosphor Icons (preferred) or custom SVG
+
+---
+
+## 🎨 Design Skills — Load Before Starting
+Apply these skills as relevant to the project:
+
+### Core Design Skills (Always Available)
+1. **Emil Kowalski** (`skills/emil-design-eng.md`)
+   - Advanced animation choreography, micro-interactions, spring physics
+   - Use for: Any project with motion, interactive components, GSAP sequencing
+   
+2. **GPT-Taste** (`skills/gpt-taste.md`)
+   - Awwwards-level premium design, creative randomization, typography variance
+   - Use for: Creative, high-end, editorial projects
+   
+3. **Taste Skill v2** (`skills/taste-skill-v2.md`)
+   - Landing pages, portfolios, redesigns without template feel
+   - Inline image typography, asymmetric layouts, high variance
+   - Default for most projects
+   
+4. **Minimalist UI** (`skills/minimalist-ui.md`)
+   - Clean editorial style, warm monochrome, Notion/Linear aesthetic
+   - Use for: Dashboard-style, clean professional projects
+   
+5. **Industrial Brutalist UI** (`skills/industrial-brutalist-ui.md`)
+   - Swiss typography, tactical telemetry, CRT terminal aesthetics
+   - Use for: Dark dashboards, data-heavy interfaces, portfolio edge cases
+
+### Enhancement & Refinement Skills
+6. **Redesign Existing Projects** (`skills/redesign-existing-projects.md`)
+   - Audit + upgrade existing codebases, remove AI slop patterns
+   - Use for: Client redesigns, legacy code modernization
+   
+7. **High-End Visual Design** (`skills/high-end-visual-design.md`)
+   - Agency-level ($150k+), double-bezel architecture, spatial rhythm
+   - Use for: Premium projects, brand/identity work
+   
+8. **Stitch Design Taste** (`skills/stitch-design-taste.md`)
+   - Semantic design systems, DESIGN.md generation, Google Stitch integration
+   - Use for: Generating structured design systems
+
+### Code Quality & Output Skills
+9. **Full-Output Enforcement** (`skills/full-output-enforcement.md`)
+   - Complete code generation, no truncation, no placeholder patterns
+   - Automatic — applies to all artifacts
+   
+10. **Impeccable** (`skills/impeccable.md`)
+    - UX/UI design review, critique, polish, animation, typography, layout
+    - Commands: `craft`, `shape`, `audit`, `polish`, `bolder`, `quieter`, etc.
+    - Use for: Design iteration, final quality pass, production-ready polish
+
+---
+
+## 🤖 Claude Code Workflow
+1. **Before starting:** Load relevant design skills from list above
+2. **File creation:** Always PascalCase, main branch only
+3. **Code generation:** Complete, production-ready — no sketches or placeholders
+4. **After editing:** Flag unused code, review bundle size
+5. **Deployment:** Ask approval before any GitHub Pages or Vercel push
+
+---
+
+## 🚀 Deployment Options
+You work with:
+- **GitHub Pages** — auto-deploy via GitHub Actions
+- **Vercel** — instant preview + production deployments
+- **Netlify** — alternative hosting with instant builds
+
+**Rule:** Never create `gh-pages` branch or trigger deployment without explicit approval. Always ask: **"Deploy to [platform] now?"**
+
+---
+
+## 🧪 Playwright E2E Testing
+
+### Setup
+Add these scripts to your `package.json`:
+```json
+{
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug"
+  }
 }
-font: {
-  sans: ['Plus Jakarta Sans', 'sans-serif']  // EN
-  // Arabic: 'Cairo' (set dynamically via JS)
-}
 ```
 
----
+### Run Tests
+```bash
+# Run all E2E tests
+npm run test:e2e
 
-## المكونات والأقسام / Sections & Components
+# Run tests with visual UI (recommended)
+npm run test:e2e:ui
 
-| # | Component | المحتوى |
-|---|-----------|---------|
-| 1 | `Header` | Sticky nav + language dropdown (EN/AR) + CTA + hamburger |
-| 2 | `Hero` | Headline, subtext, doctor photo, floating stat badges |
-| 3 | `About` | Doctor credentials, bio, qualification cards |
-| 4 | `Services` | 6 treatments: Fillers, Anti-aging, Skincare, Facial, Hair, Laser |
-| 5 | `WhyChoose` | 3 tabs: Advanced Treatments / Expert Team / Results |
-| 6 | `Excellence` | 4 clinic strengths in icon grid |
-| 7 | `Testimonials` | Patient review cards with star ratings |
-| 8 | `BeforeAfter` | Before/after comparison: Full Face, Hair, Lip Fillers, Skin |
-| 9 | `FAQ` | Accordion: Aesthetic Medicine (6 Q) + General Skin (5 Q) |
-| 10 | `Contact` | Form (name/phone/email/treatment/msg) + 2 clinic locations |
-| 11 | `Footer` | Brand links, socials (IG, TikTok) |
-| — | `FloatingChat` | Fixed bottom-right: Call, WhatsApp, Instagram |
+# Debug mode (step-by-step)
+npm run test:e2e:debug
 
----
-
-## نظام الترجمة / i18n System
-
-- **File**: `src/translations.js` — object with `en` and `ar` keys
-- **Context**: `src/context/LanguageContext.jsx`
-  - `useLang()` hook → `{ lang, setLang, t }`
-  - `t('key')` → returns translated string
-  - Language change triggers: `document.dir = 'rtl'/'ltr'`, font-family swap
-- **Supported languages**: English (`en`), Arabic (`ar`)
-- **RTL**: Handled via `dir` attribute on `<html>` + Tailwind RTL utilities
-
-**Adding a new translation key:**
-```js
-// translations.js
-export const translations = {
-  en: { myNewKey: 'English text' },
-  ar: { myNewKey: 'النص العربي' }
-}
-// Usage in component:
-const { t } = useLang()
-<p>{t('myNewKey')}</p>
+# Run specific test file
+npx playwright test tests/e2e/example.e2e.spec.js
 ```
 
----
-
-## الصور / Images
-
-All images live under `public/images/`. Reference them via `getImageUrl()`:
-
-```jsx
-import { getImageUrl, handleImageError } from '../utils/imageHelper'
-<img src={getImageUrl('/images/services/fillers.png')}
-     onError={(e) => handleImageError(e, 'Fillers')} />
-```
-
-`getImageUrl` prepends `import.meta.env.BASE_URL` automatically (needed for GitHub Pages subdirectory).
+### Test Features
+✅ Test all links and navigation  
+✅ Test button clicks and interactions  
+✅ Test form submissions  
+✅ Test responsive design (375px, 768px, 1440px)  
+✅ Test multiple browsers (Chrome, Firefox, Safari)  
 
 ---
 
-## نموذج التواصل / Contact Form — EmailJS
+## 💰 Higgsfield Workflow (AI Image/Video Generation)
 
-| Config | Value |
-|--------|-------|
-| Service ID | `ahmedbooks` |
-| Template ID | `template_u81hvqb` |
-| Public Key | `ju5jjkSKHDueNCnrd` |
+### Credit Management (CRITICAL)
+**You MUST control every credit spend.** Follow this flow strictly:
 
-Fields sent: `from_name`, `phone`, `from_email`, `treatment`, `message`.
+1. **UNLIMITED Models (Must be activated in prompt):**
+   - **Image:** Kling O1, FLUX.2 Pro, FLUX.2 Max, GPT Image, Multi Reference, Nano Banana Pro
+   - **Video:** Cinema Studio (requires activation), Seedance 2.0, Kling 3.0
+   - **Audio:** Mirelo, Sonilo
+   - **⚠️ REQUIREMENT:** To use unlimited models, you MUST say in the prompt: **"Use unlimited"** or **"Activate unlimited"**
+   - Without activation in prompt → models revert to credit-based pricing
+
+2. **Before ANY generation (paid or unlimited):**
+   - Run `get_cost: true` to preflight the exact credit cost
+   - Claude will respond with the credit amount BEFORE spending
+   - Only proceed if you explicitly approve the cost
+   - **You must say "yes, do it"** — never silent auto-spend
+
+3. **Never generate without cost disclosure:**
+   - Every paid generation shows cost → you approve → execution happens
+   - This applies to all upscales, advanced models, premium features
+   - Even unlimited models need approval — they still consume resources
+
+### Available Models (By Type)
+
+**Image (Unlimited available):**
+- Kling O1 (UNLIMITED with activation)
+- FLUX.2 Pro (UNLIMITED with activation)
+- FLUX.2 Max (UNLIMITED with activation)
+- GPT Image (UNLIMITED with activation)
+- Multi Reference (UNLIMITED with activation)
+- Nano Banana Pro (quick, UNLIMITED)
+- Nano Banana 2 (Flash speed)
+
+**Video (Limited options):**
+- Cinema Studio (UNLIMITED with activation) — best for character/product
+- Seedance 2.0 — cinematic, motion-driven
+- Kling 3.0 — photorealistic, advanced motion
+- ⚠️ No other video models have unlimited tier
+
+**Audio:**
+- Mirelo (text-to-audio, UNLIMITED)
+- Sonilo (music generation, UNLIMITED)
+
+### Paid Premium (Use Sparingly)
+- Upscaling (2K/4K via ByteDance or Topaz)
+- Advanced motion control (Kling with complex scenes)
+- High-res video generation (1080p+)
+
+### How to Activate Unlimited (Critical)
+In your generation prompt, include one of these:
+- **"Use unlimited models"**
+- **"Activate unlimited"**
+- **"Use UNLIMITED tier"**
+
+Without this phrase, even unlimited-capable models charge credits.
 
 ---
 
-## معلومات العيادة / Clinic Info
+## 📝 Communication Style
 
-| | |
-|--|--|
-| Phone / WhatsApp | +20 111 333 7472 |
-| Email | galal.ahmedamer@gmail.com |
-| Instagram | @drahmedgalal.g |
-| TikTok | @drahmedgalal_g |
-| **Sheikh Zayed** | Izar Plaza, Palm Hills — Wed 3–8 PM |
-| **New Cairo** | Concord Plaza, 90th St — Mon 5–9 PM, Tue 1–8 PM |
+### Response Format (ALWAYS)
+Every response you provide follows this pattern:
+
+1. **English only** — all code comments, responses, explanations in English
+2. **Three-sentence summary** — what was done, what changed, what to expect next
+3. **Concise output** — avoid long preambles or excessive explanation
+4. **Production mindset** — code is ready to ship, not exploratory
+
+### Design Advisor Mode
+When you see a potential design issue or risk:
+- **You act as a design expert**, not just a coder
+- **Flag problems immediately** — "This layout won't work on mobile because…"
+- **Suggest alternatives** — "Instead, try this approach…"
+- **Enforce best practices** — even if I didn't ask
+- **Be direct** — no vague warnings, concrete advice only
+- **Default recommendation:** You recommend what's best for the website, not what I said
+
+Example: If I ask for a centered hero on a SaaS dashboard, you say: "That won't work. Here's why. Use asymmetric split instead with [specific layout]."
 
 ---
 
-## أوامر التطوير / Dev Commands
+## ✅ Session Checklist
+Before you start work on any project:
+- [ ] On `main` branch (confirmed with you)
+- [ ] Design skills loaded (which ones?)
+- [ ] PascalCase file naming standard applied
+- [ ] SVG placeholders in place for missing assets
+- [ ] `import.meta.env.BASE_URL` for all images
+- [ ] CSS variables defined for colors (OKLCH, no hardcoding)
+- [ ] Main branch commitment confirmed
+- [ ] Higgsfield: understand credit control flow (ask before spending)
+
+---
+
+## 🔧 Verification Commands
 
 ```bash
-npm install          # Install dependencies
-npm run dev          # Start dev server → http://localhost:5173/dr-ahmed-gala/
-npm run build        # Production build → dist/
-npm run preview      # Preview production build locally
-npm run lint         # ESLint check
-npm run deploy       # Build + deploy to GitHub Pages
+# Build
+npm run build
+
+# Development
+npm run dev
+
+# Lint
+npm run lint
+
+# Type check
+npm run typecheck
+
+# E2E Tests (Playwright)
+npm run test:e2e
+
+# E2E Tests with UI
+npm run test:e2e:ui
 ```
 
 ---
 
-## أنماط مهمة / Key Patterns
+## 📂 Project Structure (When Creating New)
 
-### Scroll Animations
-```jsx
-// IntersectionObserver pattern used in every section
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('fade-in-up')),
-    { threshold: 0.1 }
-  )
-  if (ref.current) observer.observe(ref.current)
-  return () => observer.disconnect()
-}, [])
+```
+my-project/
+├── CLAUDE.md           ← This file
+├── src/
+│   ├── components/     ← Reusable components (PascalCase)
+│   ├── pages/          ← Page components
+│   ├── assets/         ← Images, fonts, SVGs
+│   ├── styles/         ← Global CSS, variables
+│   ├── utils/          ← Utilities, helpers
+│   └── App.jsx
+├── index.html
+├── vite.config.js
+├── tailwind.config.js
+└── package.json
 ```
 
-### Adding a New Component
-1. Create `src/components/MySection.jsx`
-2. Import and use `useLang()` for translations
-3. Add translation keys to `translations.js`
-4. Import in `App.jsx` and add to JSX in correct order
-5. Wrap content div with `ref` and `IntersectionObserver` for fade-in
+---
 
-### Modal Pattern (see `Services.jsx`)
-- State: `const [selected, setSelected] = useState(null)`
-- Backdrop click + Escape key both close the modal
-- Portal-style fixed overlay with `z-50`
+## 🎯 Key Principles
+
+1. **No templates** — every site is custom, intentional, high-end
+2. **Motion-first** — animations are considered from the start
+3. **Responsive always** — tested at 375px, 768px, 1440px
+4. **Performance matters** — no bloat, optimize for speed
+5. **Production ready** — code ships as-is, no "polish later"
+6. **Accessibility** — contrast, keyboard nav, semantic HTML mandatory
+7. **Design authority** — I catch design issues before they happen
 
 ---
 
-## GitHub Actions / Deployment
+## 🚫 Anti-Patterns (Never Do These)
 
-Deployment is manual via `npm run deploy` (runs `gh-pages -d dist`).  
-The `vite.config.js` base path **must** remain `/dr-ahmed-gala/` for GitHub Pages to work.  
-Do **not** change `base` without updating the GitHub Pages settings.
+- Generic AI design templates (three-equal-cards, centered hero, etc.)
+- Pure black (#000000) — use Off-Black or Zinc-950
+- `Inter` font in premium projects
+- Gradient text on large headings
+- Neon outer glows or generic shadows
+- Emojis in code or UI
+- Hardcoded colors — always use CSS variables
+- Overlapping text and images (clean spatial separation)
+- Placeholder copy ("Lorem ipsum", "John Doe", "Acme Corp")
+- Disabled buttons without clear visual state
+- No alt text on meaningful images
 
 ---
 
-## ملاحظات للمطور / Developer Notes
+## 💬 Questions During Development
 
-- **No TypeScript** — pure JSX throughout
-- **No router** — single-page, scroll-based navigation
-- **No state management library** — React Context only
-- **CSS animations** defined in `index.css` (`fadeInUp`, `card-hover`)
-- **Mobile menu** state lives in `Header.jsx` (local `useState`)
-- **Image fallback**: `placeholder.co` used when images fail to load
-- **`[dir="rtl"]`** selectors in `index.css` fix floating elements for Arabic
+If you're unsure:
+- **Design direction?** → I recommend the best approach, not just what you asked for
+- **Motion complexity?** → Use Emil Kowalski skill to guide spring physics
+- **Color/typography?** → Leverage taste-skill or impeccable skill
+- **Performance?** → Check bundle size, optimize aggressively
+- **Mobile issue?** → Always test at 375px width — never assume it works
+
+---
+
+## 🔐 Important Rules
+- **Work on `main` only** — this cannot be overstated
+- **No breaking changes without discussion** — major refactors need approval
+- **Commit often** — one logical change per commit
+- **Test before saying done** — build, lint, typecheck, visual review
+- **Higgsfield costs** — you approve every paid generation explicitly
+
+---
+
+**Last updated:** June 13, 2026  
+**Committed to:** main branch only
