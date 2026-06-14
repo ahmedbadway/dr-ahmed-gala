@@ -1,41 +1,19 @@
+import { Star } from '@phosphor-icons/react'
+import { useLang } from '../context/languageStore'
 import { useReveal } from '../utils/useReveal'
 
-const testimonials = [
-  {
-    name: 'Sarah M.',
-    role: 'Facial Aesthetics Patient',
-    text: 'Dr. Galal completely transformed my skin. The anti-aging treatment was virtually painless and the results were visible within days. Absolutely the most professional clinic I have ever visited.',
-    stars: 5,
-    avatar: 'https://placehold.co/80x80/d4e8e0/2d5a4e?text=SM',
-  },
-  {
-    name: 'Mona K.',
-    role: 'Skin Rejuvenation Patient',
-    text: 'Best clinic in Cairo without question. The team is kind, the environment is pristine, and my results far exceeded my expectations. I finally feel confident in my skin again.',
-    stars: 5,
-    avatar: 'https://placehold.co/80x80/e8d4e0/5a2d4e?text=MK',
-  },
-  {
-    name: 'Omar R.',
-    role: 'Hair Restoration Patient',
-    text: 'The hair restoration treatment has been life-changing. After just three PRP sessions my hair is noticeably thicker and fuller. I highly recommend Dr. Galal to anyone experiencing hair loss.',
-    stars: 5,
-    avatar: 'https://placehold.co/80x80/d4dce8/2d405a?text=OR',
-  },
-  {
-    name: 'Nadia S.',
-    role: 'Fillers & Botox Patient',
-    text: 'I was nervous about fillers but Dr. Galal put me completely at ease. The result looks incredibly natural — exactly what I wanted. I will not go anywhere else now.',
-    stars: 5,
-    avatar: 'https://placehold.co/80x80/e8e0d4/5a4e2d?text=NS',
-  },
+const avatars = [
+  'https://placehold.co/80x80/d4e8e0/2d5a4e?text=SM',
+  'https://placehold.co/80x80/e8d4e0/5a2d4e?text=MK',
+  'https://placehold.co/80x80/d4dce8/2d405a?text=OR',
+  'https://placehold.co/80x80/e8e0d4/5a4e2d?text=NS',
 ]
 
 function Stars({ count }) {
   return (
     <div className="flex gap-0.5">
       {Array.from({ length: count }).map((_, i) => (
-        <span key={i} className="text-yellow-400 text-sm">★</span>
+        <Star key={i} weight="fill" className="text-yellow-400 w-3.5 h-3.5" />
       ))}
     </div>
   )
@@ -43,20 +21,22 @@ function Stars({ count }) {
 
 export default function Testimonials() {
   const ref = useReveal({ threshold: 0.1 })
+  const { t, dict } = useLang()
+  const testimonials = dict.testimonials.items.map((item, i) => ({ ...item, stars: 5, avatar: avatars[i] }))
 
   return (
     <section className="bg-white py-20 lg:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">
-            Patient Stories
+            {t('testimonials.eyebrow')}
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] mb-4">
-            Real Results from{' '}
-            <span className="text-[#2d5a4e] italic">Real Patients</span>
+            {t('testimonials.heading1')}{' '}
+            <span className="text-[#2d5a4e] italic">{t('testimonials.heading2')}</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            Hear directly from our patients about their experience at Dr. Ahmed Galal Clinic.
+            {t('testimonials.subtitle')}
           </p>
         </div>
 

@@ -1,92 +1,21 @@
 import { useEffect, useState } from 'react'
+import { Syringe, Sparkle, Plant, Drop, Microscope, HairDryer, Check, ArrowUpRight } from '@phosphor-icons/react'
 import { handleImageError } from '../utils/imageHelper'
 import { useLang } from '../context/languageStore'
 import { useReveal } from '../utils/useReveal'
 
 const BASE = import.meta.env.BASE_URL
 
-const services = [
-  {
-    title: 'Advanced Fillers & Contouring',
-    img: `${BASE}images/services/fillers.png`,
-    emoji: '💉',
-    desc: 'Precision facial sculpting and volume restoration using premium hyaluronic acid and collagen stimulators, tailored to your facial anatomy.',
-    details: [
-      'Cheek & jawline contouring',
-      'Nasolabial fold correction',
-      'Under-eye (tear trough) filler',
-      'Non-surgical rhinoplasty',
-      'Chin augmentation',
-    ],
-  },
-  {
-    title: 'Botox Techniques',
-    img: `${BASE}images/services/antiaging.png`,
-    emoji: '✨',
-    desc: 'Expert neurotoxin application for natural, non-frozen results. Targeting dynamic wrinkles while preserving full facial expression.',
-    details: [
-      'Forehead & frown lines',
-      'Crow\'s feet treatment',
-      'Brow lift & shaping',
-      'Masseter slimming (jaw Botox)',
-      'Lip flip & gummy smile correction',
-    ],
-  },
-  {
-    title: 'Bio-stimulators',
-    img: `${BASE}images/services/skin.jpg`,
-    emoji: '🌱',
-    desc: 'Collagen regeneration treatments that stimulate your skin\'s own healing response for long-term structural improvement and anti-aging.',
-    details: [
-      'Sculptra (poly-L-lactic acid)',
-      'Radiesse (calcium hydroxyapatite)',
-      'Gradual, natural-looking results',
-      'Long-lasting effect (12–24 months)',
-      'Full-face or targeted application',
-    ],
-  },
-  {
-    title: 'Skin Boosters & Mesotherapy',
-    img: `${BASE}images/services/facial.jpg`,
-    emoji: '💧',
-    desc: 'Deep hydration and skin quality enhancement through micro-injection of vitamins, minerals, and hyaluronic acid directly into the skin.',
-    details: [
-      'Profhilo & Juvederm Volite',
-      'Vitamin & antioxidant cocktails',
-      'Deep skin hydration',
-      'Pore minimising & glow boost',
-      'Face, neck, hands & décolletage',
-    ],
-  },
-  {
-    title: 'Comprehensive Skin Treatments',
-    img: `${BASE}images/services/skin2.jpg`,
-    emoji: '🔬',
-    desc: 'Medical-grade skincare and rejuvenation protocols combining laser, chemical peels, and microneedling for transformative skin results.',
-    details: [
-      'Laser resurfacing & pigmentation',
-      'Chemical peels (superficial to deep)',
-      'Microneedling with PRP',
-      'Acne & post-acne scar revision',
-      'Personalised medical skincare plan',
-    ],
-  },
-  {
-    title: 'Hair & Scalp Treatments',
-    img: `${BASE}images/services/hair.JPG`,
-    emoji: '💆',
-    desc: 'Advanced solutions for hair thinning and loss, combining PRP therapy, mesotherapy, and medical protocols for visible regrowth.',
-    details: [
-      'PRP (Platelet-Rich Plasma) therapy',
-      'Scalp mesotherapy',
-      'Hair loss diagnosis & blood tests',
-      'Topical & oral treatment plans',
-      'Maintenance & follow-up sessions',
-    ],
-  },
+const serviceMeta = [
+  { img: `${BASE}images/services/fillers.png`, icon: Syringe },
+  { img: `${BASE}images/services/antiaging.png`, icon: Sparkle },
+  { img: `${BASE}images/services/skin.jpg`, icon: Plant },
+  { img: `${BASE}images/services/facial.jpg`, icon: Drop },
+  { img: `${BASE}images/services/skin2.jpg`, icon: Microscope },
+  { img: `${BASE}images/services/hair.JPG`, icon: HairDryer },
 ]
 
-function Modal({ service, onClose }) {
+function Modal({ service, onClose, t }) {
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
@@ -127,7 +56,7 @@ function Modal({ service, onClose }) {
             ×
           </button>
           <div className="absolute bottom-4 left-5 flex items-center gap-2">
-            <span className="text-2xl">{service.emoji}</span>
+            <service.icon className="w-6 h-6 text-white" weight="duotone" />
             <h3 className="text-white font-bold text-lg leading-tight">{service.title}</h3>
           </div>
         </div>
@@ -138,12 +67,12 @@ function Modal({ service, onClose }) {
 
           <div className="mb-6">
             <p className="text-xs font-bold text-[#c9a87c] uppercase tracking-widest mb-3">
-              What's Included
+              {t('services.included')}
             </p>
             <ul className="space-y-2">
               {service.details.map((d) => (
                 <li key={d} className="flex items-start gap-2 text-sm text-gray-600">
-                  <span className="text-[#2d5a4e] font-bold mt-0.5">✓</span>
+                  <Check className="text-[#2d5a4e] w-4 h-4 mt-0.5 flex-shrink-0" weight="bold" />
                   {d}
                 </li>
               ))}
@@ -155,7 +84,7 @@ function Modal({ service, onClose }) {
             onClick={onClose}
             className="block w-full bg-[#2d5a4e] text-white font-semibold py-3.5 rounded-xl text-center hover:bg-[#234840] transition-colors duration-200"
           >
-            Book Consultation
+            {t('services.modalCta')}
           </a>
         </div>
       </div>
@@ -163,7 +92,7 @@ function Modal({ service, onClose }) {
   )
 }
 
-function ServiceCard({ service, onClick }) {
+function ServiceCard({ service, onClick, t }) {
   const ref = useReveal({ threshold: 0.1 })
 
   return (
@@ -180,12 +109,12 @@ function ServiceCard({ service, onClick }) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <div className="absolute bottom-2 right-2 bg-white/90 rounded-full px-2 py-0.5 text-xs font-semibold text-[#2d5a4e] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          View details →
+        <div className="absolute bottom-2 right-2 bg-white/90 rounded-full px-2 py-0.5 text-xs font-semibold text-[#2d5a4e] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
+          {t('services.viewDetails')} <ArrowUpRight className="w-3 h-3" />
         </div>
       </div>
       <div className="p-4 flex items-center gap-3">
-        <span className="text-xl">{service.emoji}</span>
+        <service.icon className="w-5 h-5 text-[#2d5a4e]" weight="duotone" />
         <p className="font-semibold text-sm text-[rgb(45,52,54)] leading-tight">{service.title}</p>
       </div>
     </div>
@@ -194,32 +123,33 @@ function ServiceCard({ service, onClick }) {
 
 export default function Services() {
   const [selected, setSelected] = useState(null)
-  const { t } = useLang()
+  const { t, dict } = useLang()
+
+  const services = dict.services.items.map((item, i) => ({ ...item, ...serviceMeta[i] }))
 
   return (
     <section id="services" className="bg-[#f9f7f4] py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">
-            Our Expertise
+            {t('services.eyebrow')}
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] mb-4">
-            {t('services_title')}
+            {t('services.title')}
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            Click any service to learn more. Comprehensive aesthetic treatments designed to enhance
-            your natural beauty and confidence.
+            {t('services.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
           {services.map((s) => (
-            <ServiceCard key={s.title} service={s} onClick={() => setSelected(s)} />
+            <ServiceCard key={s.title} service={s} onClick={() => setSelected(s)} t={t} />
           ))}
         </div>
       </div>
 
-      {selected && <Modal service={selected} onClose={() => setSelected(null)} />}
+      {selected && <Modal service={selected} onClose={() => setSelected(null)} t={t} />}
     </section>
   )
 }

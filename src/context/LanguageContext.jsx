@@ -18,10 +18,14 @@ export function LanguageProvider({ children }) {
     }
   }, [lang])
 
-  const t = (key) => translations[lang]?.[key] ?? translations.en[key] ?? key
+  const get = (obj, path) => path.split('.').reduce((acc, k) => acc?.[k], obj)
+
+  const t = (key) => get(translations[lang], key) ?? get(translations.en, key) ?? key
+
+  const dict = translations[lang] ?? translations.en
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang, t, dict }}>
       {children}
     </LanguageContext.Provider>
   )

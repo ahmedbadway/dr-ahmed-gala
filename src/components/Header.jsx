@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
+import { Globe, Check, CaretDown } from '@phosphor-icons/react'
 import { useLang } from '../context/languageStore'
 
 const LANGUAGES = [
-  { code: 'en', flag: '🇺🇸', label: 'English' },
-  { code: 'ar', flag: '🇪🇬', label: 'العربية' },
+  { code: 'en', label: 'English' },
+  { code: 'ar', label: 'العربية' },
 ]
 
 function LangDropdown({ lang, setLang }) {
@@ -26,11 +27,9 @@ function LangDropdown({ lang, setLang }) {
         aria-label="Select language"
         className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-sm font-medium text-[rgb(45,52,54)] hover:bg-gray-100 transition-colors duration-200"
       >
-        <span className="text-base">🌐</span>
-        <span className="text-xs font-semibold text-gray-500">{current?.flag} {current?.code.toUpperCase()}</span>
-        <svg className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
+        <Globe className="w-4 h-4 text-[#2d5a4e]" weight="duotone" />
+        <span className="text-xs font-semibold text-gray-500">{current?.code.toUpperCase()}</span>
+        <CaretDown className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && (
@@ -45,10 +44,9 @@ function LangDropdown({ lang, setLang }) {
                   : 'text-[rgb(45,52,54)] hover:bg-gray-50'
               }`}
             >
-              <span className="text-base">{l.flag}</span>
               <span>{l.label}</span>
               {lang === l.code && (
-                <span className="ms-auto text-[#2d5a4e] text-xs">✓</span>
+                <Check className="ms-auto text-[#2d5a4e] w-3.5 h-3.5" weight="bold" />
               )}
             </button>
           ))}
@@ -70,10 +68,10 @@ export default function Header() {
   }, [])
 
   const navLinks = [
-    { label: t('nav_about'),    href: '#about' },
-    { label: t('nav_services'), href: '#services' },
-    { label: t('nav_gallery'),  href: '#gallery' },
-    { label: t('nav_contact'),  href: '#contact' },
+    { label: t('nav.about'),    href: '#about' },
+    { label: t('nav.services'), href: '#services' },
+    { label: t('nav.gallery'),  href: '#gallery' },
+    { label: t('nav.contact'),  href: '#contact' },
   ]
 
   return (
@@ -126,7 +124,7 @@ export default function Header() {
             href="#contact"
             className="bg-[#2d5a4e] text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-[#234840] transition-colors duration-200"
           >
-            {t('nav_cta')}
+            {t('nav.cta')}
           </a>
         </div>
 
@@ -164,7 +162,7 @@ export default function Header() {
             onClick={() => setMenuOpen(false)}
             className="block mt-3 bg-[#2d5a4e] text-white text-sm font-semibold px-5 py-2.5 rounded-lg text-center"
           >
-            {t('nav_cta')}
+            {t('nav.cta')}
           </a>
         </div>
       )}

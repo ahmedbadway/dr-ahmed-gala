@@ -1,29 +1,14 @@
 import { handleImageError } from '../utils/imageHelper'
+import { useLang } from '../context/languageStore'
 import { useReveal } from '../utils/useReveal'
 
 const BASE = import.meta.env.BASE_URL
 
-const groups = [
-  {
-    title: 'Lip Fillers',
-    folder: 'lip-fillers',
-    images: ['lip_1.jpeg', 'lip_2.jpeg', 'lip_3.jpeg'],
-  },
-  {
-    title: 'Full Face',
-    folder: 'full-face',
-    images: ['face_1.jpg', 'face_2.jpg', 'face_3.jpg'],
-  },
-  {
-    title: 'Skin Treatments',
-    folder: 'skin',
-    images: ['skin_1.jpg', 'skin_2.jpg', 'skin_3.jpg'],
-  },
-  {
-    title: 'Hair & Scalp',
-    folder: 'hair',
-    images: ['hair_1.jpg', 'hair_2.jpg', 'hair_3.jpg'],
-  },
+const groupMeta = [
+  { folder: 'lip-fillers', images: ['lip_1.jpeg', 'lip_2.jpeg', 'lip_3.jpeg'] },
+  { folder: 'full-face', images: ['face_1.jpg', 'face_2.jpg', 'face_3.jpg'] },
+  { folder: 'skin', images: ['skin_1.jpg', 'skin_2.jpg', 'skin_3.jpg'] },
+  { folder: 'hair', images: ['hair_1.jpg', 'hair_2.jpg', 'hair_3.jpg'] },
 ]
 
 function TreatmentGroup({ group }) {
@@ -55,19 +40,22 @@ function TreatmentGroup({ group }) {
 }
 
 export default function BeforeAfter() {
+  const { t, dict } = useLang()
+  const groups = dict.beforeAfter.groups.map((g, i) => ({ ...g, ...groupMeta[i] }))
+
   return (
     <section id="results" className="bg-[#f9f7f4] py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">
-            Real Transformations
+            {t('beforeAfter.eyebrow')}
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] mb-4">
-            Before &amp; After{' '}
-            <span className="text-[#2d5a4e]">Gallery</span>
+            {t('beforeAfter.heading1')}{' '}
+            <span className="text-[#2d5a4e]">{t('beforeAfter.heading2')}</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            Real results from Dr. Ahmed Galal's patients — natural enhancement, medical precision.
+            {t('beforeAfter.subtitle')}
           </p>
         </div>
 

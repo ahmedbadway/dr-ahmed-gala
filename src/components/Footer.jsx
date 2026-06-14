@@ -1,3 +1,6 @@
+import { Phone } from '@phosphor-icons/react'
+import { useLang } from '../context/languageStore'
+
 function InstagramIcon() {
   return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,24 +32,13 @@ function TikTokIcon() {
   )
 }
 
-const footerLinks = {
-  Treatments: [
-    'Advanced Fillers & Contouring',
-    'Botox Techniques',
-    'Bio-stimulators',
-    'Skin Boosters & Mesotherapy',
-    'Comprehensive Skin Treatments',
-    'Hair & Scalp Treatments',
-  ],
-  'Quick Links': [
-    'About',
-    'Services',
-    'Philosophy',
-    'Contact',
-  ],
-}
-
 export default function Footer() {
+  const { t, dict } = useLang()
+  const footerLinks = {
+    [t('footer.treatmentsHeading')]: dict.services.items.map((s) => s.title),
+    [t('footer.quickLinksHeading')]: dict.footer.quickLinks,
+  }
+
   return (
     <footer className="bg-[rgb(45,52,54)] text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -60,11 +52,10 @@ export default function Footer() {
               <span className="font-bold text-white text-lg">Dr. Ahmed Galal</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs mb-2">
-              Aesthetic Dermatologist &amp; Expert Injector. Natural results through medical
-              precision, advanced injectables, and a patient-first philosophy.
+              {t('footer.brandDesc')}
             </p>
             <p className="text-gray-500 text-xs mb-6">
-              Sheikh Zayed · New Cairo, Cairo, Egypt
+              {t('footer.location')}
             </p>
             <div className="flex items-center gap-4">
               <a
@@ -87,10 +78,10 @@ export default function Footer() {
               </a>
               <a
                 href="tel:+201113337472"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-lg hover:bg-[#2d5a4e] hover:scale-110 transition-all duration-200"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#2d5a4e] hover:scale-110 transition-all duration-200"
                 title="+20 111 333 7472"
               >
-                📞
+                <Phone weight="fill" className="w-4 h-4 text-white" />
               </a>
             </div>
           </div>
@@ -118,7 +109,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-gray-500 text-xs">
-            © {new Date().getFullYear()} Dr. Ahmed Galal. All rights reserved.
+            © {new Date().getFullYear()} Dr. Ahmed Galal. {t('footer.rights')}
           </p>
           <p className="text-gray-600 text-xs">
             galal.ahmedamer@gmail.com · +20 111 333 7472
