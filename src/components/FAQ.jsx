@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from 'react'
-import { useLang } from '../context/LanguageContext'
+import { useState } from 'react'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 const categories = [
   {
@@ -51,8 +52,6 @@ const categories = [
 ]
 
 function AccordionItem({ question, answer, isOpen, onToggle }) {
-  const bodyRef = useRef(null)
-
   return (
     <div className="border-b border-gray-200 last:border-0">
       <button
@@ -71,14 +70,15 @@ function AccordionItem({ question, answer, isOpen, onToggle }) {
         </span>
       </button>
       <div
-        ref={bodyRef}
         style={{
-          maxHeight: isOpen ? bodyRef.current?.scrollHeight + 'px' : '0px',
-          overflow: 'hidden',
-          transition: 'max-height 0.35s ease',
+          display: 'grid',
+          gridTemplateRows: isOpen ? '1fr' : '0fr',
+          transition: 'grid-template-rows 0.35s ease',
         }}
       >
-        <p className="text-gray-500 text-sm leading-relaxed pb-5 pr-10">{answer}</p>
+        <div style={{ overflow: 'hidden' }}>
+          <p className="text-gray-500 text-sm leading-relaxed pb-5 pr-10">{answer}</p>
+        </div>
       </div>
     </div>
   )
@@ -86,23 +86,8 @@ function AccordionItem({ question, answer, isOpen, onToggle }) {
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null)
-  const sectionRef = useRef(null)
+  const sectionRef = useReveal({ threshold: 0.1 })
   const { t } = useLang()
-
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  const allQuestions = categories.flatMap((cat, ci) =>
-    cat.questions.map((q, qi) => ({ ...q, key: `${ci}-${qi}`, catLabel: cat.label }))
-  )
 
   return (
     <section className="bg-[#f9f7f4] py-20 lg:py-28">
@@ -110,7 +95,6 @@ export default function FAQ() {
         {/* Header */}
         <div
           ref={sectionRef}
-          style={{ opacity: 0 }}
           className="text-center mb-14"
         >
           <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">
@@ -155,7 +139,7 @@ export default function FAQ() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:00201113337472"
+              href="tel:+201113337472"
               className="inline-flex items-center justify-center gap-2 bg-white text-[#2d5a4e] font-semibold px-6 py-3 rounded-full text-sm hover:bg-green-50 transition-colors"
             >
               <span>📞</span> Call Dr. Ahmed Galal

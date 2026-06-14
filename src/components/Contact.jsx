@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import emailjs from '@emailjs/browser'
-import { useLang } from '../context/LanguageContext'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 const EMAILJS_SERVICE  = 'ahmedbooks'
 const EMAILJS_TEMPLATE = 'template_u81hvqb'
@@ -19,19 +20,8 @@ export default function Contact() {
   const [form, setForm]           = useState({ name: '', phone: '', email: '', treatment: '', message: '' })
   const [status, setStatus]       = useState('idle') // idle | sending | success | error
   const formRef = useRef(null)
-  const sectionRef = useRef(null)
+  const sectionRef = useReveal({ threshold: 0.1 })
   const { t } = useLang()
-
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -47,20 +37,16 @@ export default function Contact() {
       message:   form.message,
     }
 
-    console.log('EmailJS → sending with params:', templateParams)
-
     try {
-      const result = await emailjs.send(
+      await emailjs.send(
         EMAILJS_SERVICE,
         EMAILJS_TEMPLATE,
         templateParams,
         EMAILJS_KEY
       )
-      console.log('EmailJS SUCCESS:', result.status, result.text)
       setStatus('success')
       setForm({ name: '', phone: '', email: '', treatment: '', message: '' })
-    } catch (err) {
-      console.error('EmailJS ERROR:', JSON.stringify(err), err)
+    } catch {
       setStatus('error')
     }
   }
@@ -81,7 +67,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div ref={sectionRef} style={{ opacity: 0 }} className="grid lg:grid-cols-2 gap-12">
+        <div ref={sectionRef} className="grid lg:grid-cols-2 gap-12">
           {/* Form */}
           <div className="bg-[#f9f7f4] rounded-2xl p-8 border border-gray-100">
             {status === 'success' ? (
@@ -178,7 +164,7 @@ export default function Contact() {
                     {status === 'sending' ? 'Sending…' : 'Book Consultation'}
                   </button>
                   <a
-                    href="tel:+20111333472"
+                    href="tel:+201113337472"
                     className="flex-1 border border-[#2d5a4e] text-[#2d5a4e] font-semibold py-3.5 rounded-xl text-center hover:bg-[#f0f7f4] transition-colors duration-200 text-sm"
                   >
                     📞 Call Now

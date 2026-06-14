@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
+import { useReveal } from '../utils/useReveal'
 
 const tabs = [
   {
@@ -78,22 +79,11 @@ const tagColors = {
 }
 
 function ServiceCard({ card }) {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.05 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const ref = useReveal({ threshold: 0.05 })
 
   return (
     <div
       ref={ref}
-      style={{ opacity: 0 }}
       className="card-hover bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col gap-3"
     >
       <div className="w-12 h-12 bg-[#f0f7f4] rounded-xl flex items-center justify-center text-2xl">

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { useLang } from '../context/LanguageContext'
+import { useLang } from '../context/languageStore'
 
 const LANGUAGES = [
   { code: 'en', flag: '🇺🇸', label: 'English' },
@@ -117,7 +117,7 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-3" dir="ltr">
           <LangDropdown lang={lang} setLang={setLang} />
           <a
-            href="tel:+20111333472"
+            href="tel:+201113337472"
             className="text-sm font-medium text-[#2d5a4e] hover:underline hidden lg:block"
           >
             +20 111 333 7472
@@ -137,6 +137,7 @@ export default function Header() {
             className="p-2 rounded-lg hover:bg-gray-100"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             <div className="w-5 h-0.5 bg-[rgb(45,52,54)] mb-1.5"></div>
             <div className="w-5 h-0.5 bg-[rgb(45,52,54)] mb-1.5"></div>

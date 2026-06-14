@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useReveal } from '../utils/useReveal'
 
 const testimonials = [
   {
@@ -42,17 +42,7 @@ function Stars({ count }) {
 }
 
 export default function Testimonials() {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const ref = useReveal({ threshold: 0.1 })
 
   return (
     <section className="bg-white py-20 lg:py-28 overflow-hidden">
@@ -73,7 +63,7 @@ export default function Testimonials() {
         {/* Horizontal scroll on mobile, grid on desktop */}
         <div
           ref={ref}
-          style={{ opacity: 0, scrollbarWidth: 'none' }}
+          style={{ scrollbarWidth: 'none' }}
           className="flex gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible"
         >
           {testimonials.map((t) => (

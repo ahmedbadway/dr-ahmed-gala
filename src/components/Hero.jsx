@@ -1,30 +1,17 @@
-import { useEffect, useRef } from 'react'
 import { handleImageError } from '../utils/imageHelper'
-import { useLang } from '../context/LanguageContext'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 export default function Hero() {
-  const ref = useRef(null)
+  const ref = useReveal()
   const { t } = useLang()
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) el.classList.add('fade-in-up')
-      },
-      { threshold: 0.15 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
 
   return (
     <section className="bg-[#f9f7f4] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
-          <div ref={ref} style={{ opacity: 0 }}>
+          <div ref={ref}>
             <p className="text-[#c9a87c] text-sm font-semibold tracking-widest uppercase mb-4">
               {t('hero_badge')}
             </p>

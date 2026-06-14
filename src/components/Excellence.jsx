@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useReveal } from '../utils/useReveal'
 
 const reasons = [
   {
@@ -24,17 +24,7 @@ const reasons = [
 ]
 
 export default function Excellence() {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const ref = useReveal({ threshold: 0.1 })
 
   return (
     <section id="philosophy" className="bg-[#f9f7f4] py-20 lg:py-28">
@@ -53,7 +43,6 @@ export default function Excellence() {
 
         <div
           ref={ref}
-          style={{ opacity: 0 }}
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {reasons.map((r) => (

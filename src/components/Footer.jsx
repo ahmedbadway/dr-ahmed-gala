@@ -86,7 +86,7 @@ export default function Footer() {
                 <TikTokIcon />
               </a>
               <a
-                href="tel:+20111333472"
+                href="tel:+201113337472"
                 className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-lg hover:bg-[#2d5a4e] hover:scale-110 transition-all duration-200"
                 title="+20 111 333 7472"
               >

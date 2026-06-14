@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { handleImageError } from '../utils/imageHelper'
-import { useLang } from '../context/LanguageContext'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -72,7 +73,7 @@ const services = [
   },
   {
     title: 'Hair & Scalp Treatments',
-    img: `${BASE}images/services/hair.jpg`,
+    img: `${BASE}images/services/hair.JPG`,
     emoji: '💆',
     desc: 'Advanced solutions for hair thinning and loss, combining PRP therapy, mesotherapy, and medical protocols for visible regrowth.',
     details: [
@@ -163,22 +164,11 @@ function Modal({ service, onClose }) {
 }
 
 function ServiceCard({ service, onClick }) {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const ref = useReveal({ threshold: 0.1 })
 
   return (
     <div
       ref={ref}
-      style={{ opacity: 0 }}
       onClick={onClick}
       className="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer group"
     >

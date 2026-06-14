@@ -1,26 +1,15 @@
-import { useEffect, useRef } from 'react'
 import { handleImageError } from '../utils/imageHelper'
-import { useLang } from '../context/LanguageContext'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 export default function About() {
   const { t } = useLang()
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.15 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const ref = useReveal()
 
   return (
     <section id="about" className="bg-white py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref={ref} style={{ opacity: 0 }} className="grid lg:grid-cols-2 gap-16 items-center">
+        <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Doctor photo */}
           <div className="relative">
             <div className="absolute -bottom-4 -left-4 w-full h-full bg-[#2d5a4e]/8 rounded-2xl"></div>

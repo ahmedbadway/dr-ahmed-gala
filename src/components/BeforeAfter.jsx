@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react'
 import { handleImageError } from '../utils/imageHelper'
+import { useReveal } from '../utils/useReveal'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -27,21 +27,10 @@ const groups = [
 ]
 
 function TreatmentGroup({ group }) {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.08 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const ref = useReveal({ threshold: 0.08 })
 
   return (
-    <div ref={ref} style={{ opacity: 0 }} className="mb-14">
+    <div ref={ref} className="mb-14">
       <h3 className="text-xl font-bold text-[rgb(45,52,54)] mb-5 flex items-center gap-3">
         <span className="w-8 h-0.5 bg-[#c9a87c] inline-block"></span>
         {group.title}
