@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Syringe, Sparkle, Plant, Drop, Microscope, HairDryer, Check, ArrowUpRight } from '@phosphor-icons/react'
 import { handleImageError } from '../utils/imageHelper'
-import { useLang } from '../context/LanguageContext'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -81,8 +83,8 @@ function ServiceCard({ service, onClick, t }) {
         <img src={service.img} alt={t(service.titleKey)} onError={(e) => handleImageError(e, t(service.titleKey))}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <div className="absolute bottom-2 right-2 bg-white/90 rounded-full px-2 py-0.5 text-xs font-semibold text-[#2d5a4e] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          View details →
+        <div className="absolute bottom-2 right-2 bg-white/90 rounded-full px-2 py-0.5 text-xs font-semibold text-[#2d5a4e] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
+          {t('services.viewDetails')} <ArrowUpRight className="w-3 h-3" />
         </div>
       </div>
       <div className="p-4 flex items-center gap-3">
@@ -95,7 +97,9 @@ function ServiceCard({ service, onClick, t }) {
 
 export default function Services() {
   const [selected, setSelected] = useState(null)
-  const { t } = useLang()
+  const { t, dict } = useLang()
+
+  const services = dict.services.items.map((item, i) => ({ ...item, ...serviceMeta[i] }))
 
   return (
     <section id="services" className="bg-[#f9f7f4] py-20 lg:py-28">

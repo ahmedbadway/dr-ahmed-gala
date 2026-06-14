@@ -1,6 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import emailjs from '@emailjs/browser'
-import { useLang } from '../context/LanguageContext'
+import { CheckCircle, Phone, MapPin, EnvelopeSimple, InstagramLogo, TiktokLogo, Clock } from '@phosphor-icons/react'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 const EMAILJS_SERVICE  = 'ahmedbooks'
 const EMAILJS_TEMPLATE = 'template_u81hvqb'
@@ -155,8 +157,8 @@ export default function Contact() {
                     <p key={line} className="text-gray-500 text-sm">{line}</p>
                   ))}
                 </div>
-              </div>
-            ))}
+              )
+            })}
 
             <div className="flex items-center gap-3 mt-2">
               <p className="text-sm font-semibold text-gray-600">{t('contact_follow')}</p>

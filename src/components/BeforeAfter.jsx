@@ -1,5 +1,18 @@
-import { useEffect, useRef } from 'react'
 import { handleImageError } from '../utils/imageHelper'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
+
+const BASE = import.meta.env.BASE_URL
+
+const groupMeta = [
+  { folder: 'lip-fillers', images: ['lip_1.jpeg', 'lip_2.jpeg', 'lip_3.jpeg'] },
+  { folder: 'full-face', images: ['face_1.jpg', 'face_2.jpg', 'face_3.jpg'] },
+  { folder: 'skin', images: ['skin_1.jpg', 'skin_2.jpg', 'skin_3.jpg'] },
+  { folder: 'hair', images: ['hair_1.jpg', 'hair_2.jpg', 'hair_3.jpg'] },
+]
+
+function TreatmentGroup({ group }) {
+  const ref = useReveal({ threshold: 0.08 })
 import { useLang } from '../context/LanguageContext'
 
 const BASE = import.meta.env.BASE_URL
@@ -25,7 +38,7 @@ function TreatmentGroup({ group, t }) {
   }, [])
 
   return (
-    <div ref={ref} style={{ opacity: 0 }} className="mb-14">
+    <div ref={ref} className="mb-14">
       <h3 className="text-xl font-bold text-[rgb(45,52,54)] mb-5 flex items-center gap-3">
         <span className="w-8 h-0.5 bg-[#c9a87c] inline-block" />
         {t(group.titleKey)}

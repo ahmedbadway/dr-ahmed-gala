@@ -12,7 +12,7 @@ function Stars({ count }) {
   return (
     <div className="flex gap-0.5">
       {Array.from({ length: count }).map((_, i) => (
-        <span key={i} className="text-yellow-400 text-sm">★</span>
+        <Star key={i} weight="fill" className="text-yellow-400 w-3.5 h-3.5" />
       ))}
     </div>
   )

@@ -53,17 +53,20 @@ export default function Excellence() {
         </div>
 
         <div className="mt-16 grid sm:grid-cols-3 gap-6">
-          {pillarsMeta.map((p) => (
-            <div key={p.titleKey} className="flex items-start gap-4 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-              <div className="w-12 h-12 bg-[#2d5a4e]/10 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">
-                {p.icon}
+          {dict.excellence.pillars.map((p, i) => {
+            const Icon = pillarIcons[i]
+            return (
+              <div key={p.title} className="flex items-start gap-4 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                <div className="w-12 h-12 bg-[#2d5a4e]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-6 h-6 text-[#2d5a4e]" weight="duotone" />
+                </div>
+                <div>
+                  <p className="font-bold text-[rgb(45,52,54)] mb-1">{p.title}</p>
+                  <p className="text-gray-500 text-sm">{p.desc}</p>
+                </div>
               </div>
-              <div>
-                <p className="font-bold text-[rgb(45,52,54)] mb-1">{t(p.titleKey)}</p>
-                <p className="text-gray-500 text-sm">{t(p.descKey)}</p>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

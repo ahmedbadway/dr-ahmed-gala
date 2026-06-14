@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { useLang } from '../context/LanguageContext'
+import { Globe, Check, CaretDown } from '@phosphor-icons/react'
+import { useLang } from '../context/languageStore'
 
 const LANGS = [
   { code: 'en', flag: '🇬🇧', label: 'English' },

@@ -24,8 +24,6 @@ const categoriesMeta = [
 ]
 
 function AccordionItem({ question, answer, isOpen, onToggle }) {
-  const bodyRef = useRef(null)
-
   return (
     <div className="border-b border-gray-200 last:border-0">
       <button onClick={onToggle}

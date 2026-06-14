@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { Star } from '@phosphor-icons/react'
 import { handleImageError } from '../utils/imageHelper'
-import { useLang } from '../context/LanguageContext'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 export default function Hero() {
   const ref = useRef(null)
@@ -29,18 +30,18 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* Left content */}
-          <div ref={ref} style={{ opacity: 0 }}>
+          <div ref={ref}>
             <p className="text-[#c9a87c] text-sm font-semibold tracking-widest uppercase mb-4">
-              {t('hero_badge')}
+              {t('hero.badge')}
             </p>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl leading-tight mb-4">
-              <span className="block font-bold text-[rgb(45,52,54)]">{t('hero_title1')}</span>
-              <span className="block font-light italic text-[rgb(45,52,54)]">{t('hero_title2')}</span>
-              <span className="block font-bold text-[rgb(45,52,54)]">{t('hero_title3')}</span>
-              <span className="block font-bold text-[#2d5a4e]">{t('hero_title4')}</span>
+              <span className="block font-bold text-[rgb(45,52,54)]">{t('hero.title1')}</span>
+              <span className="block font-light italic text-[rgb(45,52,54)]">{t('hero.title2')}</span>
+              <span className="block font-bold text-[rgb(45,52,54)]">{t('hero.title3')}</span>
+              <span className="block font-bold text-[#2d5a4e]">{t('hero.title4')}</span>
             </h1>
             <p className="text-[rgb(100,115,120)] text-lg leading-relaxed mb-8 max-w-xl">
-              {t('hero_subtitle')}
+              {t('hero.subtitle')}
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#contact" className="bg-[#2d5a4e] text-white font-semibold px-7 py-3.5 rounded-lg hover:bg-[#234840] transition-colors duration-200 shadow-md">
