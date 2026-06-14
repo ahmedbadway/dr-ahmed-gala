@@ -48,6 +48,7 @@ export const translations = {
     services_subtitle: "Click any service to learn more. Comprehensive aesthetic treatments designed to enhance your natural beauty and confidence.",
     services_book:     "Book Consultation",
     services_included: "What's Included",
+    services_view:     "View details",
     svc1_title: "Advanced Fillers & Contouring",
     svc1_desc:  "Precision facial sculpting and volume restoration using premium hyaluronic acid and collagen stimulators, tailored to your facial anatomy.",
     svc2_title: "Botox Techniques",
@@ -203,6 +204,12 @@ export const translations = {
     footer_lnk_phil:  "Philosophy",
     footer_lnk_con:   "Contact",
     footer_copy:      "All rights reserved.",
+
+    // ── FloatingChat ──
+    fc_contact:   "Contact Us",
+    fc_call:      "Call Now",
+    fc_whatsapp:  "WhatsApp",
+    fc_instagram: "Instagram",
   },
 
   ar: {
@@ -254,6 +261,7 @@ export const translations = {
     services_subtitle: "اضغط على أي خدمة لمعرفة المزيد. علاجات تجميلية شاملة مصممة لتعزيز جمالك الطبيعي.",
     services_book:     "احجز استشارة",
     services_included: "ما يشمله العلاج",
+    services_view:     "عرض التفاصيل",
     svc1_title: "الفيلر المتقدم والتشكيل",
     svc1_desc:  "نحت الوجه بدقة واستعادة الحجم باستخدام حمض الهيالورونيك ومحفزات الكولاجين، مصمم خصيصاً لبنية وجهك.",
     svc2_title: "تقنيات البوتوكس",
@@ -409,5 +417,11 @@ export const translations = {
     footer_lnk_phil:  "الفلسفة",
     footer_lnk_con:   "تواصل معنا",
     footer_copy:      "جميع الحقوق محفوظة.",
+
+    // ── FloatingChat ──
+    fc_contact:   "تواصل معنا",
+    fc_call:      "اتصل الآن",
+    fc_whatsapp:  "واتساب",
+    fc_instagram: "إنستجرام",
   },
 }

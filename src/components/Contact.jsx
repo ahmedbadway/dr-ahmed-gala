@@ -12,19 +12,21 @@ const treatmentKeys = ['treat_opt1','treat_opt2','treat_opt3','treat_opt4','trea
 
 const clinicInfo = [
   {
-    icon: '📍', titleKey: 'contact_c1_title',
-    lines: ['Izar Plaza Mall', 'Palm Hills, Sheikh Zayed, Cairo', '📅 Wed: 3 PM – 8 PM'],
+    Icon: MapPin, titleKey: 'contact_c1_title',
+    lines: ['Izar Plaza Mall', 'Palm Hills, Sheikh Zayed, Cairo'],
+    schedule: 'Wed: 3 PM – 8 PM',
   },
   {
-    icon: '📍', titleKey: 'contact_c2_title',
-    lines: ['Concord Plaza Mall', '90th Street, New Cairo, Cairo', '📅 Mon: 5–9 PM · Tue: 1–8 PM'],
+    Icon: MapPin, titleKey: 'contact_c2_title',
+    lines: ['Concord Plaza Mall', '90th Street, New Cairo, Cairo'],
+    schedule: 'Mon: 5–9 PM · Tue: 1–8 PM',
   },
   {
-    icon: '📞', titleKey: 'contact_phone_title',
+    Icon: Phone, titleKey: 'contact_phone_title',
     lines: ['+20 111 333 7472'],
   },
   {
-    icon: '✉️', titleKey: 'contact_email_title',
+    Icon: EnvelopeSimple, titleKey: 'contact_email_title',
     lines: ['galal.ahmedamer@gmail.com'],
   },
 ]
@@ -33,19 +35,8 @@ export default function Contact() {
   const [form, setForm]     = useState({ name: '', phone: '', email: '', treatment: '', message: '' })
   const [status, setStatus] = useState('idle')
   const formRef    = useRef(null)
-  const sectionRef = useRef(null)
+  const sectionRef = useReveal({ threshold: 0.1 })
   const { t } = useLang()
-
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -72,13 +63,13 @@ export default function Contact() {
           <p className="text-gray-500 max-w-xl mx-auto">{t('contact_subtitle')}</p>
         </div>
 
-        <div ref={sectionRef} style={{ opacity: 0 }} className="grid lg:grid-cols-2 gap-12">
+        <div ref={sectionRef} className="grid lg:grid-cols-2 gap-12">
 
           {/* Form */}
           <div className="bg-[#f9f7f4] rounded-2xl p-8 border border-gray-100">
             {status === 'success' ? (
               <div className="text-center py-12">
-                <div className="text-5xl mb-4">✅</div>
+                <CheckCircle weight="fill" className="w-12 h-12 text-[#2d5a4e] mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-[#2d5a4e] mb-2">{t('contact_success_h')}</h3>
                 <p className="text-gray-500">{t('contact_success_p')}</p>
                 <button onClick={() => setStatus('idle')} className="mt-6 text-sm text-[#2d5a4e] underline">
@@ -130,9 +121,9 @@ export default function Contact() {
                     className="flex-1 bg-[#2d5a4e] text-white font-semibold py-3.5 rounded-xl hover:bg-[#234840] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed">
                     {status === 'sending' ? t('contact_sending') : t('contact_btn_book')}
                   </button>
-                  <a href="tel:+20111333472"
-                    className="flex-1 border border-[#2d5a4e] text-[#2d5a4e] font-semibold py-3.5 rounded-xl text-center hover:bg-[#f0f7f4] transition-colors duration-200 text-sm">
-                    {t('contact_btn_call')}
+                  <a href="tel:+201113337472"
+                    className="flex-1 border border-[#2d5a4e] text-[#2d5a4e] font-semibold py-3.5 rounded-xl text-center hover:bg-[#f0f7f4] transition-colors duration-200 text-sm flex items-center justify-center gap-2">
+                    <Phone weight="fill" className="w-4 h-4" /> {t('contact_btn_call')}
                   </a>
                 </div>
               </form>
@@ -148,27 +139,32 @@ export default function Contact() {
 
             {clinicInfo.map((item) => (
               <div key={item.titleKey} className="flex items-start gap-4 p-5 bg-[#f9f7f4] rounded-xl border border-gray-100">
-                <div className="w-10 h-10 bg-[#2d5a4e] rounded-xl flex items-center justify-center text-lg flex-shrink-0">
-                  {item.icon}
+                <div className="w-10 h-10 bg-[#2d5a4e] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <item.Icon weight="fill" className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <p className="font-semibold text-sm text-[rgb(45,52,54)] mb-1">{t(item.titleKey)}</p>
                   {item.lines.map((line) => (
                     <p key={line} className="text-gray-500 text-sm">{line}</p>
                   ))}
+                  {item.schedule && (
+                    <p className="text-gray-500 text-sm flex items-center gap-1.5 mt-0.5">
+                      <Clock className="w-3.5 h-3.5 flex-shrink-0" /> {item.schedule}
+                    </p>
+                  )}
                 </div>
-              )
-            })}
+              </div>
+            ))}
 
             <div className="flex items-center gap-3 mt-2">
               <p className="text-sm font-semibold text-gray-600">{t('contact_follow')}</p>
               <a href="https://instagram.com/drahmedgalal.g" target="_blank" rel="noopener noreferrer"
-                className="text-xs font-medium text-[#2d5a4e] bg-[#f0f7f4] px-3 py-1.5 rounded-lg hover:bg-[#d4e8e0] transition-colors">
-                📸 @drahmedgalal.g
+                className="text-xs font-medium text-[#2d5a4e] bg-[#f0f7f4] px-3 py-1.5 rounded-lg hover:bg-[#d4e8e0] transition-colors flex items-center gap-1.5">
+                <InstagramLogo weight="fill" className="w-3.5 h-3.5" /> @drahmedgalal.g
               </a>
               <a href="https://tiktok.com/@drahmedgalal_g" target="_blank" rel="noopener noreferrer"
-                className="text-xs font-medium text-[#2d5a4e] bg-[#f0f7f4] px-3 py-1.5 rounded-lg hover:bg-[#d4e8e0] transition-colors">
-                🎵 @drahmedgalal_g
+                className="text-xs font-medium text-[#2d5a4e] bg-[#f0f7f4] px-3 py-1.5 rounded-lg hover:bg-[#d4e8e0] transition-colors flex items-center gap-1.5">
+                <TiktokLogo weight="fill" className="w-3.5 h-3.5" /> @drahmedgalal_g
               </a>
             </div>
           </div>

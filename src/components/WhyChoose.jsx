@@ -1,29 +1,31 @@
-import { useState, useEffect, useRef } from 'react'
-import { useLang } from '../context/LanguageContext'
+import { useState } from 'react'
+import { Syringe, Sparkle, Plant, Drop, Microscope, Star, Bandaids, HairDryer, Pill } from '@phosphor-icons/react'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 const tabsMeta = [
   {
     labelKey: 'why_tab1',
     cards: [
-      { icon: '💉', titleKey: 'why_i1_title', descKey: 'why_i1_desc', tagKey: 'why_popular' },
-      { icon: '✨', titleKey: 'why_i2_title', descKey: 'why_i2_desc', tagKey: 'why_popular' },
-      { icon: '🌱', titleKey: 'why_i3_title', descKey: 'why_i3_desc', tagKey: '' },
-      { icon: '💧', titleKey: 'why_i4_title', descKey: 'why_i4_desc', tagKey: 'why_recommended' },
+      { Icon: Syringe, titleKey: 'why_i1_title', descKey: 'why_i1_desc', tagKey: 'why_popular' },
+      { Icon: Sparkle, titleKey: 'why_i2_title', descKey: 'why_i2_desc', tagKey: 'why_popular' },
+      { Icon: Plant,   titleKey: 'why_i3_title', descKey: 'why_i3_desc', tagKey: '' },
+      { Icon: Drop,    titleKey: 'why_i4_title', descKey: 'why_i4_desc', tagKey: 'why_recommended' },
     ],
   },
   {
     labelKey: 'why_tab2',
     cards: [
-      { icon: '🔬', titleKey: 'why_s1_title', descKey: 'why_s1_desc', tagKey: 'why_popular' },
-      { icon: '🌟', titleKey: 'why_s2_title', descKey: 'why_s2_desc', tagKey: '' },
-      { icon: '🩹', titleKey: 'why_s3_title', descKey: 'why_s3_desc', tagKey: 'why_recommended' },
+      { Icon: Microscope, titleKey: 'why_s1_title', descKey: 'why_s1_desc', tagKey: 'why_popular' },
+      { Icon: Star,       titleKey: 'why_s2_title', descKey: 'why_s2_desc', tagKey: '' },
+      { Icon: Bandaids,   titleKey: 'why_s3_title', descKey: 'why_s3_desc', tagKey: 'why_recommended' },
     ],
   },
   {
     labelKey: 'why_tab3',
     cards: [
-      { icon: '💆', titleKey: 'why_h1_title', descKey: 'why_h1_desc', tagKey: 'why_popular' },
-      { icon: '💊', titleKey: 'why_h2_title', descKey: 'why_h2_desc', tagKey: 'why_recommended' },
+      { Icon: HairDryer, titleKey: 'why_h1_title', descKey: 'why_h1_desc', tagKey: 'why_popular' },
+      { Icon: Pill,      titleKey: 'why_h2_title', descKey: 'why_h2_desc', tagKey: 'why_recommended' },
     ],
   },
 ]
@@ -34,23 +36,13 @@ const tagColors = {
 }
 
 function ServiceCard({ card, t }) {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.05 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const ref = useReveal({ threshold: 0.05 })
 
   return (
-    <div ref={ref} style={{ opacity: 0 }}
+    <div ref={ref}
       className="card-hover bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col gap-3">
-      <div className="w-12 h-12 bg-[#f0f7f4] rounded-xl flex items-center justify-center text-2xl">
-        {card.icon}
+      <div className="w-12 h-12 bg-[#f0f7f4] rounded-xl flex items-center justify-center">
+        <card.Icon className="w-6 h-6 text-[#2d5a4e]" weight="duotone" />
       </div>
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-bold text-[rgb(45,52,54)] text-sm leading-snug">{t(card.titleKey)}</h3>

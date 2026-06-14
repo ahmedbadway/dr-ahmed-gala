@@ -4,19 +4,8 @@ import { useLang } from '../context/languageStore'
 import { useReveal } from '../utils/useReveal'
 
 export default function Hero() {
-  const ref = useRef(null)
+  const ref = useReveal()
   const { t } = useLang()
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.15 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
 
   const stats = [
     { num: '5+',     labelKey: 'hero_stat1_label' },
@@ -32,16 +21,16 @@ export default function Hero() {
           {/* Left content */}
           <div ref={ref}>
             <p className="text-[#c9a87c] text-sm font-semibold tracking-widest uppercase mb-4">
-              {t('hero.badge')}
+              {t('hero_badge')}
             </p>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl leading-tight mb-4">
-              <span className="block font-bold text-[rgb(45,52,54)]">{t('hero.title1')}</span>
-              <span className="block font-light italic text-[rgb(45,52,54)]">{t('hero.title2')}</span>
-              <span className="block font-bold text-[rgb(45,52,54)]">{t('hero.title3')}</span>
-              <span className="block font-bold text-[#2d5a4e]">{t('hero.title4')}</span>
+              <span className="block font-bold text-[rgb(45,52,54)]">{t('hero_title1')}</span>
+              <span className="block font-light italic text-[rgb(45,52,54)]">{t('hero_title2')}</span>
+              <span className="block font-bold text-[rgb(45,52,54)]">{t('hero_title3')}</span>
+              <span className="block font-bold text-[#2d5a4e]">{t('hero_title4')}</span>
             </h1>
             <p className="text-[rgb(100,115,120)] text-lg leading-relaxed mb-8 max-w-xl">
-              {t('hero.subtitle')}
+              {t('hero_subtitle')}
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#contact" className="bg-[#2d5a4e] text-white font-semibold px-7 py-3.5 rounded-lg hover:bg-[#234840] transition-colors duration-200 shadow-md">
@@ -79,9 +68,11 @@ export default function Hero() {
                 <p className="text-sm font-bold text-[#2d5a4e]">Dr. Ahmed Galal</p>
                 <p className="text-xs text-gray-400">{t('hero_specialty')}</p>
               </div>
-              <div className="absolute top-6 right-6 bg-white rounded-xl px-3 py-2 shadow-lg flex items-center gap-2">
-                <span className="text-yellow-400 text-sm">★★★★★</span>
-                <span className="text-xs font-semibold text-gray-700">5.0</span>
+              <div className="absolute top-6 right-6 bg-white rounded-xl px-3 py-2 shadow-lg flex items-center gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} weight="fill" className="text-yellow-400 w-3.5 h-3.5" />
+                ))}
+                <span className="text-xs font-semibold text-gray-700 ms-1">5.0</span>
               </div>
             </div>
           </div>

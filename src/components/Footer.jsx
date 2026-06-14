@@ -1,4 +1,5 @@
-import { useLang } from '../context/LanguageContext'
+import { Phone } from '@phosphor-icons/react'
+import { useLang } from '../context/languageStore'
 
 function InstagramIcon() {
   return (
@@ -70,10 +71,10 @@ export default function Footer() {
                 className="hover:scale-110 transition-transform duration-200 block">
                 <TikTokIcon />
               </a>
-              <a href="tel:+20111333472"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-lg hover:bg-[#2d5a4e] hover:scale-110 transition-all duration-200"
+              <a href="tel:+201113337472"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#2d5a4e] hover:scale-110 transition-all duration-200"
                 title="+20 111 333 7472">
-                📞
+                <Phone weight="fill" className="w-4 h-4 text-white" />
               </a>
             </div>
           </div>

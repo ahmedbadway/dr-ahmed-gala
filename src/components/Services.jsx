@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Syringe, Sparkle, Plant, Drop, Microscope, HairDryer, Check, ArrowUpRight } from '@phosphor-icons/react'
+import { Syringe, Sparkle, Plant, Drop, Microscope, HairDryer, Check, X, ArrowUpRight } from '@phosphor-icons/react'
 import { handleImageError } from '../utils/imageHelper'
 import { useLang } from '../context/languageStore'
 import { useReveal } from '../utils/useReveal'
@@ -7,17 +7,17 @@ import { useReveal } from '../utils/useReveal'
 const BASE = import.meta.env.BASE_URL
 
 const servicesMeta = [
-  { img: `${BASE}images/services/fillers.png`,   emoji: '💉', titleKey: 'svc1_title', descKey: 'svc1_desc',
+  { img: `${BASE}images/services/fillers.png`,   Icon: Syringe,    titleKey: 'svc1_title', descKey: 'svc1_desc',
     details: ['Cheek & jawline contouring','Nasolabial fold correction','Under-eye (tear trough) filler','Non-surgical rhinoplasty','Chin augmentation'] },
-  { img: `${BASE}images/services/antiaging.png`, emoji: '✨', titleKey: 'svc2_title', descKey: 'svc2_desc',
+  { img: `${BASE}images/services/antiaging.png`, Icon: Sparkle,    titleKey: 'svc2_title', descKey: 'svc2_desc',
     details: ['Forehead & frown lines','Crow\'s feet treatment','Brow lift & shaping','Masseter slimming (jaw Botox)','Lip flip & gummy smile correction'] },
-  { img: `${BASE}images/services/skin.jpg`,      emoji: '🌱', titleKey: 'svc3_title', descKey: 'svc3_desc',
+  { img: `${BASE}images/services/skin.jpg`,      Icon: Plant,      titleKey: 'svc3_title', descKey: 'svc3_desc',
     details: ['Sculptra (poly-L-lactic acid)','Radiesse (calcium hydroxyapatite)','Gradual, natural-looking results','Long-lasting effect (12–24 months)','Full-face or targeted application'] },
-  { img: `${BASE}images/services/facial.jpg`,    emoji: '💧', titleKey: 'svc4_title', descKey: 'svc4_desc',
+  { img: `${BASE}images/services/facial.jpg`,    Icon: Drop,       titleKey: 'svc4_title', descKey: 'svc4_desc',
     details: ['Profhilo & Juvederm Volite','Vitamin & antioxidant cocktails','Deep skin hydration','Pore minimising & glow boost','Face, neck, hands & décolletage'] },
-  { img: `${BASE}images/services/skin2.jpg`,     emoji: '🔬', titleKey: 'svc5_title', descKey: 'svc5_desc',
+  { img: `${BASE}images/services/skin2.jpg`,     Icon: Microscope, titleKey: 'svc5_title', descKey: 'svc5_desc',
     details: ['Laser resurfacing & pigmentation','Chemical peels (superficial to deep)','Microneedling with PRP','Acne & post-acne scar revision','Personalised medical skincare plan'] },
-  { img: `${BASE}images/services/hair.png`,      emoji: '💆', titleKey: 'svc6_title', descKey: 'svc6_desc',
+  { img: `${BASE}images/services/hair.JPG`,      Icon: HairDryer,  titleKey: 'svc6_title', descKey: 'svc6_desc',
     details: ['PRP (Platelet-Rich Plasma) therapy','Scalp mesotherapy','Hair loss diagnosis & blood tests','Topical & oral treatment plans','Maintenance & follow-up sessions'] },
 ]
 
@@ -36,9 +36,11 @@ function Modal({ service, onClose, t }) {
         <div className="relative h-52 overflow-hidden rounded-t-2xl">
           <img src={service.img} alt={t(service.titleKey)} onError={(e) => handleImageError(e, t(service.titleKey))} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-          <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-gray-700 hover:bg-white font-bold text-lg leading-none" aria-label="Close">×</button>
+          <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-gray-700 hover:bg-white" aria-label="Close">
+            <X weight="bold" className="w-4 h-4" />
+          </button>
           <div className="absolute bottom-4 left-5 flex items-center gap-2">
-            <span className="text-2xl">{service.emoji}</span>
+            <service.Icon className="w-6 h-6 text-white" weight="duotone" />
             <h3 className="text-white font-bold text-lg leading-tight">{t(service.titleKey)}</h3>
           </div>
         </div>
@@ -49,7 +51,7 @@ function Modal({ service, onClose, t }) {
             <ul className="space-y-2">
               {service.details.map((d) => (
                 <li key={d} className="flex items-start gap-2 text-sm text-gray-600">
-                  <span className="text-[#2d5a4e] font-bold mt-0.5">✓</span>{d}
+                  <Check className="text-[#2d5a4e] w-4 h-4 mt-0.5 flex-shrink-0" weight="bold" />{d}
                 </li>
               ))}
             </ul>
@@ -64,31 +66,21 @@ function Modal({ service, onClose, t }) {
 }
 
 function ServiceCard({ service, onClick, t }) {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const ref = useReveal({ threshold: 0.1 })
 
   return (
-    <div ref={ref} style={{ opacity: 0 }} onClick={onClick}
+    <div ref={ref} onClick={onClick}
       className="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer group">
       <div className="relative overflow-hidden h-44">
         <img src={service.img} alt={t(service.titleKey)} onError={(e) => handleImageError(e, t(service.titleKey))}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
         <div className="absolute bottom-2 right-2 bg-white/90 rounded-full px-2 py-0.5 text-xs font-semibold text-[#2d5a4e] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
-          {t('services.viewDetails')} <ArrowUpRight className="w-3 h-3" />
+          {t('services_view')} <ArrowUpRight className="w-3 h-3" />
         </div>
       </div>
       <div className="p-4 flex items-center gap-3">
-        <span className="text-xl">{service.emoji}</span>
+        <service.Icon className="w-5 h-5 text-[#2d5a4e]" weight="duotone" />
         <p className="font-semibold text-sm text-[rgb(45,52,54)] leading-tight">{t(service.titleKey)}</p>
       </div>
     </div>
@@ -97,9 +89,7 @@ function ServiceCard({ service, onClick, t }) {
 
 export default function Services() {
   const [selected, setSelected] = useState(null)
-  const { t, dict } = useLang()
-
-  const services = dict.services.items.map((item, i) => ({ ...item, ...serviceMeta[i] }))
+  const { t } = useLang()
 
   return (
     <section id="services" className="bg-[#f9f7f4] py-20 lg:py-28">

@@ -1,5 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
-import { useLang } from '../context/LanguageContext'
+import { useState } from 'react'
+import { Phone, WhatsappLogo, InstagramLogo } from '@phosphor-icons/react'
+import { useLang } from '../context/languageStore'
+import { useReveal } from '../utils/useReveal'
 
 const categoriesMeta = [
   {
@@ -37,8 +39,10 @@ function AccordionItem({ question, answer, isOpen, onToggle }) {
           +
         </span>
       </button>
-      <div ref={bodyRef} style={{ maxHeight: isOpen ? bodyRef.current?.scrollHeight + 'px' : '0px', overflow: 'hidden', transition: 'max-height 0.35s ease' }}>
-        <p className="text-gray-500 text-sm leading-relaxed pb-5 pr-10">{answer}</p>
+      <div style={{ display: 'grid', gridTemplateRows: isOpen ? '1fr' : '0fr', transition: 'grid-template-rows 0.35s ease' }}>
+        <div style={{ overflow: 'hidden' }}>
+          <p className="text-gray-500 text-sm leading-relaxed pb-5 pr-10">{answer}</p>
+        </div>
       </div>
     </div>
   )
@@ -46,25 +50,14 @@ function AccordionItem({ question, answer, isOpen, onToggle }) {
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null)
-  const sectionRef = useRef(null)
+  const sectionRef = useReveal({ threshold: 0.1 })
   const { t } = useLang()
-
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('fade-in-up') },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
 
   return (
     <section id="faq" className="bg-[#f9f7f4] py-20 lg:py-28">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div ref={sectionRef} style={{ opacity: 0 }} className="text-center mb-14">
+        <div ref={sectionRef} className="text-center mb-14">
           <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">{t('faq_badge')}</p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] mb-4">{t('faq_title')}</h2>
           <p className="text-gray-500 max-w-md mx-auto text-sm">{t('faq_subtitle')}</p>
@@ -94,17 +87,17 @@ export default function FAQ() {
           <h3 className="text-xl font-bold mb-2">{t('still_questions')}</h3>
           <p className="text-green-200 text-sm mb-6">{t('faq_cta_sub')}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="tel:00201113337472"
+            <a href="tel:+201113337472"
               className="inline-flex items-center justify-center gap-2 bg-white text-[#2d5a4e] font-semibold px-6 py-3 rounded-full text-sm hover:bg-green-50 transition-colors">
-              <span>📞</span> {t('faq_call')}
+              <Phone weight="fill" className="w-4 h-4" /> {t('faq_call')}
             </a>
             <a href="https://wa.me/201113337472" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-semibold px-6 py-3 rounded-full text-sm hover:bg-[#1ebe5d] transition-colors">
-              <span>💬</span> WhatsApp
+              <WhatsappLogo weight="fill" className="w-4 h-4" /> WhatsApp
             </a>
             <a href="https://instagram.com/drahmedgalal.g" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white font-semibold px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity">
-              <span>📸</span> Instagram
+              <InstagramLogo weight="fill" className="w-4 h-4" /> Instagram
             </a>
           </div>
         </div>

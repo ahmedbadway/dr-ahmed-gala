@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { useLang } from '../context/LanguageContext'
+import { Star } from '@phosphor-icons/react'
+import { useLang } from '../context/languageStore'
 
 const testimonialsMeta = [
   { nameKey: 'test1_name', roleKey: 'test1_role', textKey: 'test1_text', stars: 5, avatar: 'https://placehold.co/80x80/d4e8e0/2d5a4e?text=SM' },

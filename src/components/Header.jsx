@@ -3,8 +3,8 @@ import { Globe, Check, CaretDown } from '@phosphor-icons/react'
 import { useLang } from '../context/languageStore'
 
 const LANGS = [
-  { code: 'en', flag: '🇬🇧', label: 'English' },
-  { code: 'ar', flag: '🇪🇬', label: 'العربية' },
+  { code: 'en', label: 'English' },
+  { code: 'ar', label: 'العربية' },
 ]
 
 function LangDropdown({ lang, setLang, t }) {
@@ -22,12 +22,11 @@ function LangDropdown({ lang, setLang, t }) {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Select language"
-        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[rgb(45,52,54)] hover:bg-gray-100 transition-colors duration-200"
       >
-        <span className="text-xl leading-none">{LANGS.find((l) => l.code === lang)?.flag}</span>
-        <svg className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
+        <Globe className="w-4 h-4 text-[#2d5a4e]" weight="duotone" />
+        <span className="text-xs font-semibold text-gray-500">{lang.toUpperCase()}</span>
+        <CaretDown className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && (
@@ -46,10 +45,10 @@ function LangDropdown({ lang, setLang, t }) {
               }`}
             >
               <span className="flex items-center gap-2.5">
-                <span className="text-xl leading-none">{l.flag}</span>
                 <span>{l.label}</span>
+                <span className="text-xs font-bold text-gray-400">{l.code.toUpperCase()}</span>
               </span>
-              <span className="text-xs font-bold text-gray-400">{l.code.toUpperCase()}</span>
+              {lang === l.code && <Check className="w-4 h-4 text-[#2d5a4e]" weight="bold" />}
             </button>
           ))}
         </div>
