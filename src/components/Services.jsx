@@ -47,7 +47,7 @@ function Modal({ service, onClose, t }) {
         <div className="p-6">
           <p className="text-gray-600 leading-relaxed mb-5">{t(service.descKey)}</p>
           <div className="mb-6">
-            <p className="text-xs font-bold text-[#c9a87c] uppercase tracking-widest mb-3">{t('services_included')}</p>
+            <p className="text-xs font-bold text-[#836d51] uppercase tracking-widest mb-3">{t('services_included')}</p>
             <ul className="space-y-2">
               {service.details.map((d) => (
                 <li key={d} className="flex items-start gap-2 text-sm text-gray-600">
@@ -95,7 +95,7 @@ export default function Services() {
     <section id="services" className="bg-[#f9f7f4] py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">{t('services_badge')}</p>
+          <p className="text-[#836d51] text-xs font-bold tracking-widest uppercase mb-3">{t('services_badge')}</p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] mb-4">{t('services_title')}</h2>
           <p className="text-gray-500 max-w-xl mx-auto">{t('services_subtitle')}</p>
         </div>
