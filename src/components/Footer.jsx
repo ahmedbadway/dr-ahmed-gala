@@ -59,7 +59,7 @@ export default function Footer() {
               <span className="font-bold text-white text-lg">Dr. Ahmed Galal</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs mb-2">{t('footer_tagline')}</p>
-            <p className="text-gray-500 text-xs mb-6">{t('footer_location')}</p>
+            <p className="text-gray-400 text-xs mb-6">{t('footer_location')}</p>
             <div className="flex items-center gap-4" dir="ltr">
               <a href="https://instagram.com/drahmedgalal.g" target="_blank" rel="noopener noreferrer"
                 title="Instagram @drahmedgalal.g"
@@ -98,10 +98,10 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-xs">
+          <p className="text-gray-400 text-xs">
             © {new Date().getFullYear()} Dr. Ahmed Galal. {t('footer_copy')}
           </p>
-          <p className="text-gray-600 text-xs" dir="ltr">
+          <p className="text-gray-400 text-xs" dir="ltr">
             galal.ahmedamer@gmail.com · +20 111 333 7472
           </p>
         </div>

@@ -20,7 +20,7 @@ export default function Hero() {
 
           {/* Left content */}
           <div ref={ref}>
-            <p className="text-[#c9a87c] text-sm font-semibold tracking-widest uppercase mb-4">
+            <p className="text-[#836d51] text-sm font-semibold tracking-widest uppercase mb-4">
               {t('hero_badge')}
             </p>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl leading-tight mb-4">

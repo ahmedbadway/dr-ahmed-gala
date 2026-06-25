@@ -58,7 +58,7 @@ export default function Contact() {
     <section id="contact" className="bg-white py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">{t('contact_badge')}</p>
+          <p className="text-[#836d51] text-xs font-bold tracking-widest uppercase mb-3">{t('contact_badge')}</p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] mb-4">{t('contact_title')}</h2>
           <p className="text-gray-500 max-w-xl mx-auto">{t('contact_subtitle')}</p>
         </div>

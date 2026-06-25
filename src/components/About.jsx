@@ -42,7 +42,7 @@ export default function About() {
 
           {/* Bio */}
           <div>
-            <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">
+            <p className="text-[#836d51] text-xs font-bold tracking-widest uppercase mb-3">
               {t('about_badge')}
             </p>
             <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] leading-tight mb-6">
