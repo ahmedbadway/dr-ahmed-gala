@@ -38,7 +38,7 @@ export default function Testimonials() {
     <section className="bg-white py-20 lg:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">{t('test_badge')}</p>
+          <p className="text-[#836d51] text-xs font-bold tracking-widest uppercase mb-3">{t('test_badge')}</p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] mb-4">
             {t('test_title1')}{' '}
             <span className="text-[#2d5a4e] italic">{t('test_title2')}</span>

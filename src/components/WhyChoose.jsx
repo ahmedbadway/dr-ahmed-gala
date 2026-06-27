@@ -32,7 +32,7 @@ const tabsMeta = [
 
 const tagColors = {
   why_popular:     'bg-[#2d5a4e] text-white',
-  why_recommended: 'bg-[#c9a87c] text-white',
+  why_recommended: 'bg-[#c9a87c] text-[rgb(45,52,54)]',
 }
 
 function ServiceCard({ card, t }) {
@@ -70,7 +70,7 @@ export default function WhyChoose() {
     <section className="bg-white py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">{t('why_badge')}</p>
+          <p className="text-[#836d51] text-xs font-bold tracking-widest uppercase mb-3">{t('why_badge')}</p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] mb-4">{t('why_title')}</h2>
           <p className="text-gray-500 max-w-xl mx-auto">{t('why_subtitle')}</p>
         </div>

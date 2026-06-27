@@ -23,7 +23,7 @@ export default function Excellence() {
     <section id="philosophy" className="bg-[#f9f7f4] py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-4">{t('exc_badge')}</p>
+          <p className="text-[#836d51] text-xs font-bold tracking-widest uppercase mb-4">{t('exc_badge')}</p>
           <blockquote className="text-2xl lg:text-3xl font-light italic text-[rgb(45,52,54)] max-w-3xl mx-auto leading-relaxed mb-3">
             "{t('exc_quote')}"
           </blockquote>

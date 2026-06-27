@@ -58,7 +58,7 @@ export default function FAQ() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div ref={sectionRef} className="text-center mb-14">
-          <p className="text-[#c9a87c] text-xs font-bold tracking-widest uppercase mb-3">{t('faq_badge')}</p>
+          <p className="text-[#836d51] text-xs font-bold tracking-widest uppercase mb-3">{t('faq_badge')}</p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[rgb(45,52,54)] mb-4">{t('faq_title')}</h2>
           <p className="text-gray-500 max-w-md mx-auto text-sm">{t('faq_subtitle')}</p>
         </div>
