@@ -25,7 +25,7 @@ export default function Hero() {
             </p>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl leading-tight mb-4">
               <span className="block font-bold text-[rgb(45,52,54)]">{t('hero_title1')}</span>
-              <span className="block font-light italic text-[rgb(45,52,54)]">{t('hero_title2')}</span>
+              <span className="block font-bold text-[rgb(45,52,54)]">{t('hero_title2')}</span>
               <span className="block font-bold text-[rgb(45,52,54)]">{t('hero_title3')}</span>
               <span className="block font-bold text-[#2d5a4e]">{t('hero_title4')}</span>
             </h1>
